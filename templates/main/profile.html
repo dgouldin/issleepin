@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block main %}
+{% if profile %}
+<p>
+    {{profile.name}} is
+    {% if profile.sleeping %}sleeping{% else %}awake{% endif %}.
+</p>
+{% else %}
+<p><a href="/claim/?slug={{slug}}">Claim this name</a></p>
+{% endif %}
+{% endblock %}
