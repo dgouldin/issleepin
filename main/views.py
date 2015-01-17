@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import Profile
 
 def profile(request):
-    slug = 'eden' # TODO: request.subdomain
+    slug = request.subdomain
     try:
         profile = Profile.objects.get(slug=slug)
     except Profile.DoesNotExist:
