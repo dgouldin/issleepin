@@ -6,5 +6,7 @@ import main.views
 
 urlpatterns = patterns('',
     url(r'^$', main.views.profile),
+    url(r'^claim/$', main.views.claim),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

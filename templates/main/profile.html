@@ -1,11 +1,31 @@
 {% extends "base.html" %}
-{% block main %}
+{% block content %}
 {% if profile %}
-<p>
-    {{profile.name}} is
-    {% if profile.sleeping %}sleeping{% else %}awake{% endif %}.
-</p>
+    {% with sleeping=profile.sleeping %}
+        {% if user == profile.user %}
+            <form method="post" action=".">
+                {% csrf_token %}
+                <p>
+                    {{ profile.name }} is
+                    <select name="sleeping">
+                        <option value="true" {% if sleeping %}selected="selected"{% endif %}>
+                            sleeping
+                        </option>
+                        <option value="false" {% if not sleeping %}selected="selected"{% endif %}>
+                            awake
+                        </option>
+                    </select>.
+                </p>
+                <input type="submit" value="Update">
+            </form>
+        {% else %}
+            <p>
+                {{ profile.name }} is
+                {% if sleeping %}sleeping{% else %}awake{% endif %}.
+            </p>
+        {% endif %}
+    {% endwith %}
 {% else %}
-<p><a href="/claim/?slug={{slug}}">Claim this name</a></p>
+    <p><a href="/claim/">Claim this URL</a></p>
 {% endif %}
 {% endblock %}

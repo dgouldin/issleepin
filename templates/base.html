@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>{% block title %}{% endblock %} | issleep.in</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,7 +19,13 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-        {% block main %}{% endblock %}
+        <div>
+            {% if user.is_authenticated %}
+                Hi, {{ user.username }}
+            {% else %}
+                <a href="{% url "auth_login" %}">Login</a>
+            {% endif %}
+        </div>
+        <div id="content">{% block content %}{% endblock %}</div>
     </body>
 </html>

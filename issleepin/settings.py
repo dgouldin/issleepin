@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
     'main',
 )
 
@@ -55,3 +56,4 @@ USE_TZ = True
 
 SITE_ID = 1
 SUBDOMAIN_URLCONFS = {None: ROOT_URLCONF}
+LOGIN_REDIRECT_URL = '/'
